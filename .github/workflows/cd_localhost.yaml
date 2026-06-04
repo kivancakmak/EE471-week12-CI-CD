@@ -43,12 +43,9 @@ jobs:
           $py = "C:\Users\kivan\AppData\Local\Programs\Python\Python310\python.exe"
           $workDir = "$PWD"
           $taskName = "DjangoDevServer"
-          # Eski görevi temizle
           cmd /c "schtasks /Delete /TN $taskName /F >nul 2>&1"
-          # Django'yu başlatan bir batch komutu hazırla
           $action = "cmd /c cd /d `"$workDir`" && `"$py`" manage.py runserver localhost:8000 --noreload > `"$env:USERPROFILE\django_server.log`" 2>&1"
-          # Scheduled task oluştur ve hemen çalıştır (runner ağacından bağımsız)
-          schtasks /Create /TN $taskName /TR $action /SC ONCE /ST 00:00 /F /RL HIGHEST
+          schtasks /Create /TN $taskName /TR $action /SC ONCE /ST 23:59 /F
           schtasks /Run /TN $taskName
           Start-Sleep -Seconds 8
           Write-Host "Checking if Django responds on /polls/ ..."
