@@ -37,6 +37,5 @@ jobs:
       - name: Launch new Django instance
         shell: powershell
         run: |
-          cd mysite
           Start-Process python -ArgumentList "manage.py","runserver","localhost:8000" -WindowStyle Hidden
           Write-Host "Django launched on localhost:8000"
