@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v2.0.3...v2.0.4) (2026-06-04)
+
+
+### Bug Fixes
+
+* launch Django via scheduled task to survive job exit ([7314a1e](https://github.com/kivancakmak/EE471-week12-CI-CD/commit/7314a1e225e8b4500937ba33c1d8a3c9de879194))
+
 ## [2.0.3](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v2.0.2...v2.0.3) (2026-06-04)
 
 
