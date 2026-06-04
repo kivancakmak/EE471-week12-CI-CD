@@ -28,13 +28,14 @@ jobs:
       - name: Stop previous Django instance
         shell: powershell
         run: |
-          schtasks /End /TN "DjangoDevServer" 2>$null
+          cmd /c "schtasks /End /TN DjangoDevServer >nul 2>&1"
           $procs = Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match "runserver" }
           foreach ($p in $procs) {
             Write-Host "Stopping PID $($p.ProcessId)"
             Stop-Process -Id $p.ProcessId -Force -ErrorAction SilentlyContinue
           }
           Write-Host "Previous instances stopped."
+          exit 0
 
       - name: Launch new Django instance
         shell: powershell
@@ -43,7 +44,7 @@ jobs:
           $workDir = "$PWD"
           $taskName = "DjangoDevServer"
           # Eski görevi temizle
-          schtasks /Delete /TN $taskName /F 2>$null
+          cmd /c "schtasks /Delete /TN $taskName /F >nul 2>&1"
           # Django'yu başlatan bir batch komutu hazırla
           $action = "cmd /c cd /d `"$workDir`" && `"$py`" manage.py runserver localhost:8000 --noreload > `"$env:USERPROFILE\django_server.log`" 2>&1"
           # Scheduled task oluştur ve hemen çalıştır (runner ağacından bağımsız)
