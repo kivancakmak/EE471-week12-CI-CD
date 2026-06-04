@@ -1,4 +1,4 @@
-<!--This is a feature update-->
+<!--This is a Major(breaking change )update-->
 # EE471 Week 12 — Django Backend (CI/CD)
 
 
