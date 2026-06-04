@@ -28,6 +28,7 @@ jobs:
       - name: Stop previous Django instance
         shell: powershell
         run: |
+          schtasks /End /TN "DjangoDevServer" 2>$null
           $procs = Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match "runserver" }
           foreach ($p in $procs) {
             Write-Host "Stopping PID $($p.ProcessId)"
@@ -39,21 +40,25 @@ jobs:
         shell: powershell
         run: |
           $py = "C:\Users\kivan\AppData\Local\Programs\Python\Python310\python.exe"
-          $logPath = "$env:USERPROFILE\django_server.log"
-          $errPath = "$env:USERPROFILE\django_server_err.log"
-          Start-Process -FilePath $py `
-            -ArgumentList "manage.py","runserver","localhost:8000","--noreload" `
-            -WorkingDirectory "$PWD" `
-            -RedirectStandardOutput $logPath `
-            -RedirectStandardError $errPath `
-            -WindowStyle Hidden
-          Start-Sleep -Seconds 5
-          Write-Host "Checking if Django responds..."
+          $workDir = "$PWD"
+          $taskName = "DjangoDevServer"
+          # Eski görevi temizle
+          schtasks /Delete /TN $taskName /F 2>$null
+          # Django'yu başlatan bir batch komutu hazırla
+          $action = "cmd /c cd /d `"$workDir`" && `"$py`" manage.py runserver localhost:8000 --noreload > `"$env:USERPROFILE\django_server.log`" 2>&1"
+          # Scheduled task oluştur ve hemen çalıştır (runner ağacından bağımsız)
+          schtasks /Create /TN $taskName /TR $action /SC ONCE /ST 00:00 /F /RL HIGHEST
+          schtasks /Run /TN $taskName
+          Start-Sleep -Seconds 8
+          Write-Host "Checking if Django responds on /polls/ ..."
           try {
-            $resp = Invoke-WebRequest -Uri "http://localhost:8000/" -UseBasicParsing -TimeoutSec 10
+            $resp = Invoke-WebRequest -Uri "http://localhost:8000/polls/" -UseBasicParsing -TimeoutSec 10
             Write-Host "Django is UP. Status: $($resp.StatusCode)"
           } catch {
-            Write-Host "Could not reach Django. Logs below:"
-            Get-Content $logPath -ErrorAction SilentlyContinue
-            Get-Content $errPath -ErrorAction SilentlyContinue
+            if ($_.Exception.Response) {
+              Write-Host "Django is UP (HTTP $([int]$_.Exception.Response.StatusCode))"
+            } else {
+              Write-Host "Django NOT reachable. Log:"
+              Get-Content "$env:USERPROFILE\django_server.log" -ErrorAction SilentlyContinue
+            }
           }
