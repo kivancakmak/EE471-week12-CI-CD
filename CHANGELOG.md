@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v2.0.2...v2.0.3) (2026-06-04)
+
+
+### Bug Fixes
+
+* use full python path and verify Django startup in CD ([77e51d9](https://github.com/kivancakmak/EE471-week12-CI-CD/commit/77e51d93f0741154e2c4e72efc7706b147c23449))
+
 ## [2.0.2](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v2.0.1...v2.0.2) (2026-06-04)
 
 
