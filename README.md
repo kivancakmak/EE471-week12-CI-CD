@@ -1,4 +1,6 @@
+<!--This is a bug fix-->
 # EE471 Week 12 — Django Backend (CI/CD)
+
 
 EE471 Software dersi Week 12 çalışması. Önceki haftalardaki Django `mysite`
 projesinin temiz bir kopyası üzerinden CI/CD kurulumunu içerir.
