@@ -1,4 +1,4 @@
-<!--CI Linting Test->
+<!--Fix update->
 # EE471 Week 12 — Django Backend (CI/CD)
 
 
