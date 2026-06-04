@@ -1,4 +1,4 @@
-<!--This is a Major(breaking change )update-->
+<!--CI Linting Test->
 # EE471 Week 12 — Django Backend (CI/CD)
 
 
