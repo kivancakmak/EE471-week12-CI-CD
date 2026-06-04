@@ -1,3 +1,10 @@
+## [2.0.5](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v2.0.4...v2.0.5) (2026-06-04)
+
+
+### Bug Fixes
+
+* suppress schtasks errors when task does not exist ([fbf75bc](https://github.com/kivancakmak/EE471-week12-CI-CD/commit/fbf75bcf4ef1a3087f2e24dc551f3da945fa52ed))
+
 ## [2.0.4](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v2.0.3...v2.0.4) (2026-06-04)
 
 
