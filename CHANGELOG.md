@@ -1,3 +1,10 @@
+## [2.0.6](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v2.0.5...v2.0.6) (2026-06-04)
+
+
+### Bug Fixes
+
+* remove elevated privilege requirement from scheduled task ([8e4be60](https://github.com/kivancakmak/EE471-week12-CI-CD/commit/8e4be609c9c2d66cd87f1e79c84fd9640fa9ad61))
+
 ## [2.0.5](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v2.0.4...v2.0.5) (2026-06-04)
 
 
