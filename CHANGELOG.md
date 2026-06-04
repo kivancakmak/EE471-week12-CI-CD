@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v1.0.0...v1.1.0) (2026-06-04)
+
+
+### Features
+
+* Readme file changed ([0c754b1](https://github.com/kivancakmak/EE471-week12-CI-CD/commit/0c754b1b749de03ecae59588f33d4a757f5d131d))
+
 # 1.0.0 (2026-06-04)
 
 
