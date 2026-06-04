@@ -43,9 +43,19 @@ jobs:
           $py = "C:\Users\kivan\AppData\Local\Programs\Python\Python310\python.exe"
           $workDir = "$PWD"
           $taskName = "DjangoDevServer"
+          $logPath = "$env:USERPROFILE\django_server.log"
+          $batPath = "$env:USERPROFILE\run_django.bat"
+          # Django'yu baslatan bat dosyasini olustur (tum bosluklu yollar burada guvenle kalir)
+          $batContent = @"
+          @echo off
+          cd /d "$workDir"
+          "$py" manage.py runserver localhost:8000 --noreload > "$logPath" 2>&1
+          "@
+          Set-Content -Path $batPath -Value $batContent -Encoding ASCII
+          Write-Host "Created bat file at $batPath"
+          # Eski task'i temizle, yeni task olustur (TR sadece bat yolu - bosluk yok)
           cmd /c "schtasks /Delete /TN $taskName /F >nul 2>&1"
-          $action = "cmd /c cd /d `"$workDir`" && `"$py`" manage.py runserver localhost:8000 --noreload > `"$env:USERPROFILE\django_server.log`" 2>&1"
-          schtasks /Create /TN $taskName /TR $action /SC ONCE /ST 23:59 /F
+          schtasks /Create /TN $taskName /TR "$batPath" /SC ONCE /ST 23:59 /F
           schtasks /Run /TN $taskName
           Start-Sleep -Seconds 8
           Write-Host "Checking if Django responds on /polls/ ..."
@@ -57,6 +67,6 @@ jobs:
               Write-Host "Django is UP (HTTP $([int]$_.Exception.Response.StatusCode))"
             } else {
               Write-Host "Django NOT reachable. Log:"
-              Get-Content "$env:USERPROFILE\django_server.log" -ErrorAction SilentlyContinue
+              Get-Content $logPath -ErrorAction SilentlyContinue
             }
           }
