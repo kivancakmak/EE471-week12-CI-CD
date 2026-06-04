@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v2.0.0...v2.0.1) (2026-06-04)
+
+
+### Bug Fixes
+
+* New fix ([b9200cd](https://github.com/kivancakmak/EE471-week12-CI-CD/commit/b9200cd948bad7ab001cba8b72a5693a368d6833))
+
 # [2.0.0](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v1.1.0...v2.0.0) (2026-06-04)
 
 
