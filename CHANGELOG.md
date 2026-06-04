@@ -1,3 +1,10 @@
+## [2.0.7](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v2.0.6...v2.0.7) (2026-06-04)
+
+
+### Bug Fixes
+
+* launch Django via bat file to handle spaces in path ([ff1dcbf](https://github.com/kivancakmak/EE471-week12-CI-CD/commit/ff1dcbf04e685cc4ebdcd4ee2f223e8488a2d94c))
+
 ## [2.0.6](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v2.0.5...v2.0.6) (2026-06-04)
 
 
