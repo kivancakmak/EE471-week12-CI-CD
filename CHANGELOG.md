@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v2.0.1...v2.0.2) (2026-06-04)
+
+
+### Bug Fixes
+
+* correct manage.py path in CD workflow ([2889deb](https://github.com/kivancakmak/EE471-week12-CI-CD/commit/2889deb44ca678f67731488b1b36d0f74829d789))
+
 ## [2.0.1](https://github.com/kivancakmak/EE471-week12-CI-CD/compare/v2.0.0...v2.0.1) (2026-06-04)
 
 
